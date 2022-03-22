@@ -1,9 +1,11 @@
 import React from "react";
+import './Message.css';
 
 const Message = function (props) {
     return (
-        <div>
-            {props.msg}
+        <div className="Message">
+            <h2>{props.msg.title}</h2>
+            <p>{props.msg.body}</p>
         </div>
     );
 }
