@@ -34,6 +34,8 @@ function App(props) {
   const addNewMessage = (e) => {
     e.preventDefault();
 
+    if (author.length < 1 || header.length < 1 || body.length < 1) return;
+
     const newMessage = {
       id: Date.now(),
       author: author,
@@ -45,10 +47,13 @@ function App(props) {
   }
 
   useEffect(() => {
-    setTimeout(() => {
-      if (author.length > 3) console.log('привет - ' + author);
-    }, 1500);
-  }, messages);
+    if (author.length > 0) {
+      const name = author;
+      setTimeout(() => {
+        console.log('привет - ' + name);
+      }, 1500);
+    }
+  }, [messages]);
 
   return (
     <div className="App">
