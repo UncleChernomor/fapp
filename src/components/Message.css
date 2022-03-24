@@ -1,6 +1,11 @@
 .Message {
     background-color: #fff;
-    border: 2px solid darkblue;
+    border: 2px solid #0000bb;
     padding: 5px;
     margin-top: 10px;
+}
+
+.Message-header {
+    width: 80%;
+    border-bottom: 1px double #0000cc;
 }

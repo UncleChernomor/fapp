@@ -4,7 +4,7 @@ import './Message.css';
 const Message = function (props) {
     return (
         <div className="Message">
-            <h2>{props.msg.title}</h2>
+            <h2 className="Message-header">{props.msg.title}</h2>
             <p>{props.msg.body}</p>
         </div>
     );

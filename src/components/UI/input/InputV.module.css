@@ -1,0 +1,7 @@
+.inputV {
+    display: block;
+    width: calc(100% * 0.7);
+    padding: 5px 15px;
+    margin: 5px 0;
+    border: 1px solid #0000bb;
+}
