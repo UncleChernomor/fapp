@@ -1,9 +1,16 @@
 import React from "react";
-import classes from './ButtonV.module.css';
+import ReactDOM from 'react-dom';
+import Button from '@mui/material/Button'
+// import classes from './ButtonV.module.css';
 
 const ButtonV = function ({ children, ...props }) {
-    return (
-        <button {...props} className={classes.buttonV}>{children}</button>
+    return (<>
+        <Button {...props} variant="outlined">send</Button>
+        {/* 
+        кнопка без MUI
+        <button {...props} className={classes.buttonV}>{children}</button> 
+        */}
+    </>
     );
 }
 

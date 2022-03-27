@@ -1,10 +1,22 @@
 import React from "react";
-import classes from './InputV.module.css';
+import TextField from '@mui/material/TextField'
+// import classes from './InputV.module.css';
 
 
 const InputV = (props) => {
     return (
-        <input {...props} className={classes.inputV} />
+        <>
+            <TextField
+                variant="outlined"
+                {...props}
+            >
+
+            </TextField>
+            {/* 
+                без MUI
+                <input {...props} className={classes.inputV} /> 
+            */}
+        </>
     );
 }
 
