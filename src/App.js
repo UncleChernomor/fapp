@@ -3,6 +3,9 @@ import './App.css';
 import MessageList from "./components/MessageList";
 import ButtonV from "./components/UI/button/ButtonV";
 import InputV from "./components/UI/input/InputV";
+import CssBaseline from '@mui/material/CssBaseline';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
 
 function App(props) {
   let err = false;
@@ -56,31 +59,37 @@ function App(props) {
   }, [messages]);
 
   return (
-    <div className="App">
-      <form>
+    <Container maxWidth='lg' sx="border: 1px solid red">
+      <CssBaseline />
+      <Box
+        component="form"
+      >
         <InputV
           type='text'
           value={author}
           placeholder="автор"
+          label="автор"
           onChange={e => setAuthor(e.target.value)}
         />
         <InputV
           type='text'
           value={header}
           placeholder="заголовок"
+          label="заголовок"
           onChange={e => setHeader(e.target.value)}
         />
         <InputV
           type='text'
           value={body}
           placeholder="сообщение"
+          label="сообщение"
           onChange={e => setBody(e.target.value)}
         />
         <ButtonV onClick={addNewMessage}>Отправить сообщение</ButtonV>
-      </form>
+      </Box>
 
       <MessageList msgs={messages} />
-    </div>
+    </Container>
   );
 }
 

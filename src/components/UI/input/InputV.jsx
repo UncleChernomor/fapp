@@ -7,8 +7,10 @@ const InputV = (props) => {
     return (
         <>
             <TextField
+                fullWidth
                 variant="outlined"
                 {...props}
+                margin="dense"
             >
 
             </TextField>

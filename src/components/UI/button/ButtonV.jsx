@@ -5,7 +5,7 @@ import Button from '@mui/material/Button'
 
 const ButtonV = function ({ children, ...props }) {
     return (<>
-        <Button {...props} variant="outlined">send</Button>
+        <Button {...props} variant="outlined">{children}</Button>
         {/* 
         кнопка без MUI
         <button {...props} className={classes.buttonV}>{children}</button> 
