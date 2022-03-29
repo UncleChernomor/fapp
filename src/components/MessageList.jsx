@@ -6,9 +6,11 @@ const MessageList = function ({ msgs }) {
 
     return (
         <Stack
-            direction="column"
-            justifyContent="space-around"
-            alignItems="stretch"
+            sx={{
+                width: "100 %",
+                backgroundColor: "info.main",
+                p: 1
+            }}
         >
             {
                 msgs.map((message) => <Message msg={message} key={message.id} />)

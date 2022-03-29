@@ -6,9 +6,13 @@ import InputV from "./components/UI/input/InputV";
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemText from '@mui/material/ListItemText';
 
 function App(props) {
-  let err = false;
+
   const [messages, setMessageList] = useState([
     {
       id: 1,
@@ -27,6 +31,20 @@ function App(props) {
       author: 'vasya',
       title: 'message 3',
       body: 'message 3 body there'
+    },
+  ]);
+  const [chats, SetChats] = useState([
+    {
+      id: 1,
+      name: "chat 1"
+    },
+    {
+      id: 2,
+      name: "chat 2"
+    },
+    {
+      id: 3,
+      name: "chat 3"
     },
   ]);
 
@@ -59,7 +77,7 @@ function App(props) {
   }, [messages]);
 
   return (
-    <Container maxWidth='lg' sx="border: 1px solid red">
+    <Container maxWidth='lg'>
       <CssBaseline />
       <Box
         component="form"
@@ -87,8 +105,31 @@ function App(props) {
         />
         <ButtonV onClick={addNewMessage}>Отправить сообщение</ButtonV>
       </Box>
+      <Box sx={{
+        display: "flex",
+        p: 2
+      }}>
+        <nav aria-label="secondary mailbox folders">
+          <List sx={{
+            backgroundColor: "info.main",
+            color: "#fff"
+          }}>
+            {
+              chats.map((item) =>
+                <ListItem disablePadding key={item.id}>
+                  <ListItemButton>
+                    <ListItemText>{item.name}</ListItemText>
+                  </ListItemButton>
+                </ListItem>
+              )
+            }
+          </List>
+        </nav>
+        <Box sx={{ flexGrow: 1 }}>
+          <MessageList msgs={messages} />
+        </Box>
+      </Box>
 
-      <MessageList msgs={messages} />
     </Container>
   );
 }
