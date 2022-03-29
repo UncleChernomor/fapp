@@ -14,9 +14,14 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 function App(props) {
   const theme = createTheme({
-    info: {
-      main: "#cccccc",
-    },
+    pallete: {
+      info: {
+        main: "#c95353",
+      },
+      success: {
+        main: "#31d492",
+      },
+    }
   });
 
   const [messages, setMessageList] = useState([
@@ -116,21 +121,22 @@ function App(props) {
         p: 2
       }}>
         <nav aria-label="secondary mailbox folders">
-
-          <List sx={{
-            backgroundColor: "info.main",
-            color: ""
-          }}>
-            {
-              chats.map((item) =>
-                <ListItem disablePadding key={item.id}>
-                  <ListItemButton>
-                    <ListItemText>{item.name}</ListItemText>
-                  </ListItemButton>
-                </ListItem>
-              )
-            }
-          </List>
+          <ThemeProvider theme={theme}>
+            <List sx={{
+              backgroundColor: "info.main",
+              color: ""
+            }}>
+              {
+                chats.map((item) =>
+                  <ListItem disablePadding key={item.id}>
+                    <ListItemButton>
+                      <ListItemText>{item.name}</ListItemText>
+                    </ListItemButton>
+                  </ListItem>
+                )
+              }
+            </List>
+          </ThemeProvider>
 
         </nav>
 
