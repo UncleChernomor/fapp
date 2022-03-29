@@ -94,6 +94,7 @@ function App(props) {
         component="form"
       >
         <InputV
+          autoFocus
           type='text'
           value={author}
           placeholder="автор"
