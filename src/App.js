@@ -10,8 +10,14 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 function App(props) {
+  const theme = createTheme({
+    info: {
+      main: "#cccccc",
+    },
+  });
 
   const [messages, setMessageList] = useState([
     {
@@ -110,9 +116,10 @@ function App(props) {
         p: 2
       }}>
         <nav aria-label="secondary mailbox folders">
+
           <List sx={{
             backgroundColor: "info.main",
-            color: "#fff"
+            color: ""
           }}>
             {
               chats.map((item) =>
@@ -124,7 +131,9 @@ function App(props) {
               )
             }
           </List>
+
         </nav>
+
         <Box sx={{ flexGrow: 1 }}>
           <MessageList msgs={messages} />
         </Box>
