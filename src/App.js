@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import './App.css';
 import MessageList from "./components/MessageList";
 import ButtonV from "./components/UI/button/ButtonV";
@@ -59,6 +59,7 @@ function App(props) {
     },
   ]);
 
+  const refFocus = useRef(null);
   const [author, setAuthor] = useState('');
   const [header, setHeader] = useState('');
   const [body, setBody] = useState('');
@@ -85,6 +86,11 @@ function App(props) {
         console.log('привет - ' + name);
       }, 1500);
     }
+
+    //Настроить фокус --- НЕ ЗАБЫТЬ!!!!
+    // if (refFocus !== null)
+    //   refFocus.current.focus();
+
   }, [messages]);
 
   return (
@@ -94,7 +100,7 @@ function App(props) {
         component="form"
       >
         <InputV
-          autoFocus
+          ref={refFocus}
           type='text'
           value={author}
           placeholder="автор"
