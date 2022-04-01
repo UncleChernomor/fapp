@@ -4,59 +4,36 @@ import ButtonV from "../components/UI/button/ButtonV";
 import InputV from "../components/UI/input/InputV";
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
+import ChatList from "../components/ChatList.jsx";
 import Container from '@mui/material/Container';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 function Chats(props) {
-    const theme = createTheme({
-        pallete: {
-            info: {
-                main: "#c95353",
-            },
-            success: {
-                main: "#31d492",
-            },
-        }
-    });
 
     const [messages, setMessageList] = useState([
         {
             id: 1,
+            chatId: 1,
             author: 'vasya',
             title: 'message 1',
             body: 'message 1 body there'
         },
         {
             id: 2,
+            chatId: 1,
             author: 'fedya',
             title: 'message 2',
             body: 'message 2 body there'
         },
         {
             id: 3,
+            chatId: 2,
             author: 'vasya',
             title: 'message 3',
             body: 'message 3 body there'
         },
     ]);
-    const [chats, SetChats] = useState([
-        {
-            id: 1,
-            name: "chat 1"
-        },
-        {
-            id: 2,
-            name: "chat 2"
-        },
-        {
-            id: 3,
-            name: "chat 3"
-        },
-    ]);
+
 
     const refFocus = useRef(null);
     const [author, setAuthor] = useState('');
@@ -92,7 +69,7 @@ function Chats(props) {
     }, [messages, author]);
 
     return (
-        <Container maxWidth='lg'>
+        <Box maxWidth='lg'>
             <CssBaseline />
             <Box
                 component="form"
@@ -125,31 +102,13 @@ function Chats(props) {
                 display: "flex",
                 p: 2
             }}>
-                <nav aria-label="secondary mailbox folders">
-                    <ThemeProvider theme={theme}>
-                        <List sx={{
-                            backgroundColor: "info.main",
-                            color: ""
-                        }}>
-                            {
-                                chats.map((item) =>
-                                    <ListItem disablePadding key={item.id}>
-                                        <ListItemButton>
-                                            <ListItemText>{item.name}</ListItemText>
-                                        </ListItemButton>
-                                    </ListItem>
-                                )
-                            }
-                        </List>
-                    </ThemeProvider>
-
-                </nav>
+                <ChatList />
 
                 <Box sx={{ flexGrow: 1 }}>
                     <MessageList msgs={messages} />
                 </Box>
             </Box>
-        </Container>
+        </Box>
     );
 }
 
