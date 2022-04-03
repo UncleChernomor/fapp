@@ -1,39 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
-import MessageList from "../components/MessageList";
+
 import ButtonV from "../components/UI/button/ButtonV";
 import InputV from "../components/UI/input/InputV";
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import ChatList from "../components/ChatList.jsx";
-import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { Outlet } from "react-router-dom";
 
 function Chats(props) {
-
-    const [messages, setMessageList] = useState([
-        {
-            id: 1,
-            chatId: 1,
-            author: 'vasya',
-            title: 'message 1',
-            body: 'message 1 body there'
-        },
-        {
-            id: 2,
-            chatId: 1,
-            author: 'fedya',
-            title: 'message 2',
-            body: 'message 2 body there'
-        },
-        {
-            id: 3,
-            chatId: 2,
-            author: 'vasya',
-            title: 'message 3',
-            body: 'message 3 body there'
-        },
-    ]);
-
 
     const refFocus = useRef(null);
     const [author, setAuthor] = useState('');
@@ -103,10 +77,7 @@ function Chats(props) {
                 p: 2
             }}>
                 <ChatList />
-
-                <Box sx={{ flexGrow: 1 }}>
-                    <MessageList msgs={messages} />
-                </Box>
+                <Outlet />
             </Box>
         </Box>
     );

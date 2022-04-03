@@ -1,9 +1,7 @@
-import React from "react";
 import Stack from "@mui/material/Stack";
 import Message from "./Message";
 
 const MessageList = function ({ msgs }) {
-
     return (
         <Stack
             sx={{
