@@ -35,11 +35,11 @@ function MessageForm({ createMsg, ...props }) {
 
         createMsg(newMessage);
 
-        // setPost({
-        //     author: '',
-        //     header: '',
-        //     body: '',
-        // });
+        setPost({
+            author: '',
+            header: '',
+            body: '',
+        });
     }
 
     return (

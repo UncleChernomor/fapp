@@ -1,10 +1,12 @@
-import React, { useEffect, useRef, useState } from "react";
-import { MessageContext } from '../context';
+import React, { useEffect, useState } from "react";
+import { Outlet } from "react-router-dom";
 import CssBaseline from '@mui/material/CssBaseline';
-import Box from '@mui/material/Box';
+import { Box, Snackbar, Button, IconButton, Slide, Alert } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
+import { MessageContext } from '../context';
 import ChatList from "../components/ChatList.jsx";
 import MessageForm from "../components/MessageForm.jsx";
-import { useParams, Outlet } from "react-router-dom";
+
 
 function Chats(props) {
 
@@ -32,24 +34,60 @@ function Chats(props) {
         },
     ]);
 
+    /**
+     * isOpen Snackbar for the robot's response to the added message
+     */
+    const [open, setOpen] = useState(false);
+    const [mount, setMount] = useState(false);
+
+    const action = (
+        <React.Fragment>
+            <Button color="inherit" size="small" onClick={handleClose}>
+                CLOSE
+            </Button>
+            <IconButton
+                size="small"
+                aria-label="close"
+                color="inherit"
+                onClick={handleClose}
+            >
+                <CloseIcon fontSize="small" />
+            </IconButton>
+        </React.Fragment>
+    );
+
+    /**
+     * Add element in state messages
+     * @param {*} message object state messages
+     */
     function createMessage(message) {
         console.log('chats new message');
         setMessageList([...messages, message]);
     }
 
-    let params = useParams();
+    function handleClose() {
+        setOpen(false);
+    }
 
-    // useEffect(() => {
-    //     if (author.length > 0) {
-    //         const name = author;
-    //         setTimeout(() => {
-    //             console.log('привет - ' + name);
-    //         }, 1500);
-    //     }
+    useEffect(() => {
+        if (!mount) {
+            setMount(true);
+        } else {
+            if (messages[messages.length - 1].author.length > 0) {
+                setTimeout(() => {
+                    setOpen(true);
+                }, 1500);
+            }
+        }
 
-    //     //Настроить фокус --- НЕ ЗАБЫТЬ!!!
-    //     // refFocus.current?.focus():null;
-    // }, [message]);
+
+        //Настроить фокус --- НЕ ЗАБЫТЬ!!!
+        // refFocus.current?.focus():null;
+    }, [messages]);
+
+    function TransitionDown(props) {
+        return <Slide {...props} direction="down" />;
+    }
 
     return (
         <MessageContext.Provider value={{ messages, setMessageList }}>
@@ -62,8 +100,20 @@ function Chats(props) {
                 }}>
                     <ChatList />
                     <Outlet />
-                    {/* <Chat msgs={(messages.filter((msg) => msg.chatId === parseInt(params.chatId)))} /> */}
                 </Box>
+                <Snackbar
+                    severity='success'
+                    open={open}
+                    autoHideDuration={3000}
+                    onClose={handleClose}
+                    message="Message added"
+                    action={action}
+                    TransitionComponent={TransitionDown}
+                >
+                    <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+                        This is a success message!
+                    </Alert>
+                </Snackbar>
             </Box>
         </MessageContext.Provider >
     );
