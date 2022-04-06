@@ -1,85 +1,71 @@
 import React, { useEffect, useRef, useState } from "react";
-
-import ButtonV from "../components/UI/button/ButtonV";
-import InputV from "../components/UI/input/InputV";
+import { MessageContext } from '../context';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import ChatList from "../components/ChatList.jsx";
-import { Outlet } from "react-router-dom";
+import MessageForm from "../components/MessageForm.jsx";
+import { useParams, Outlet } from "react-router-dom";
 
 function Chats(props) {
 
-    const refFocus = useRef(null);
-    const [author, setAuthor] = useState('');
-    const [header, setHeader] = useState('');
-    const [body, setBody] = useState('');
+    const [messages, setMessageList] = useState([
+        {
+            id: 1,
+            chatId: 1,
+            author: 'vasya',
+            title: 'message 1',
+            body: 'message 1 body there'
+        },
+        {
+            id: 2,
+            chatId: 1,
+            author: 'fedya',
+            title: 'message 2',
+            body: 'message 2 body there'
+        },
+        {
+            id: 3,
+            chatId: 2,
+            author: 'vasya',
+            title: 'message 3',
+            body: 'message 3 body there'
+        },
+    ]);
 
-    const addNewMessage = (e) => {
-        e.preventDefault();
-
-        if (author.length < 1 || header.length < 1 || body.length < 1) return;
-
-        const newMessage = {
-            id: Date.now(),
-            author: author,
-            title: header,
-            body: body
-        }
-
-        setMessageList([...messages, newMessage]);
+    function createMessage(message) {
+        console.log('chats new message');
+        setMessageList([...messages, message]);
     }
 
-    useEffect(() => {
-        if (author.length > 0) {
-            const name = author;
-            setTimeout(() => {
-                console.log('привет - ' + name);
-            }, 1500);
-        }
+    let params = useParams();
 
-        //Настроить фокус --- НЕ ЗАБЫТЬ!!!
-        // refFocus.current?.focus():null;
+    // useEffect(() => {
+    //     if (author.length > 0) {
+    //         const name = author;
+    //         setTimeout(() => {
+    //             console.log('привет - ' + name);
+    //         }, 1500);
+    //     }
 
-    }, [messages, author]);
+    //     //Настроить фокус --- НЕ ЗАБЫТЬ!!!
+    //     // refFocus.current?.focus():null;
+    // }, [message]);
 
     return (
-        <Box maxWidth='lg'>
-            <CssBaseline />
-            <Box
-                component="form"
-            >
-                <InputV
-                    ref={refFocus}
-                    type='text'
-                    value={author}
-                    placeholder="автор"
-                    label="автор"
-                    onChange={e => setAuthor(e.target.value)}
-                />
-                <InputV
-                    type='text'
-                    value={header}
-                    placeholder="заголовок"
-                    label="заголовок"
-                    onChange={e => setHeader(e.target.value)}
-                />
-                <InputV
-                    type='text'
-                    value={body}
-                    placeholder="сообщение"
-                    label="сообщение"
-                    onChange={e => setBody(e.target.value)}
-                />
-                <ButtonV onClick={addNewMessage}>Отправить сообщение</ButtonV>
+        <MessageContext.Provider value={{ messages, setMessageList }}>
+            <Box maxWidth='lg'>
+                <CssBaseline />
+                <MessageForm createMsg={createMessage} />
+                <Box sx={{
+                    display: "flex",
+                    p: 2
+                }}>
+                    <ChatList />
+                    <Outlet />
+                    {/* <Chat msgs={(messages.filter((msg) => msg.chatId === parseInt(params.chatId)))} /> */}
+                </Box>
             </Box>
-            <Box sx={{
-                display: "flex",
-                p: 2
-            }}>
-                <ChatList />
-                <Outlet />
-            </Box>
-        </Box>
+        </MessageContext.Provider >
     );
 }
 

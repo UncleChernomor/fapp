@@ -17,9 +17,10 @@ function App(props) {
         <Route path="/chats" element={<Chats />}>
           <Route index element={
             <main>
-              <h2>Choose chat</h2>
+              <h2 style={{ alignItems: 'center' }}>Choose chat</h2>
             </main>} />
           <Route path=":chatId" element={<Chat />} />
+          <Route path="*" element={<NoFoundPage />} />
         </Route>
         <Route path="/" element={<Home />} />
         <Route path="*" element={<NoFoundPage />} />
