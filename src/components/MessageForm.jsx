@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import ButtonV from "./UI/button/ButtonV";
 import InputV from "./UI/input/InputV";
 import Box from '@mui/material/Box';
@@ -14,9 +14,12 @@ function MessageForm({ createMsg, ...props }) {
 
     const refFocus = useRef();
     const { chatId } = useParams();
+    useEffect(() => {
+        refFocus.current.focus();
+    })
+
 
     const addNewMessage = (e) => {
-        console.log('addNewMessage chatId: ' + chatId);
 
         e.preventDefault();
 
@@ -47,6 +50,7 @@ function MessageForm({ createMsg, ...props }) {
             component="form"
         >
             <InputV
+                autoFocus
                 ref={refFocus}
                 type='text'
                 value={post.author}
