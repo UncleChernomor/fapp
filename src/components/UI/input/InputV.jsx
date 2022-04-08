@@ -3,10 +3,11 @@ import TextField from '@mui/material/TextField'
 // import classes from './InputV.module.css';
 
 
-const InputV = (props) => {
+const InputV = React.forwardRef((props, ref) => {
     return (
         <>
             <TextField
+                ref={ref}
                 fullWidth
                 variant="outlined"
                 {...props}
@@ -20,6 +21,6 @@ const InputV = (props) => {
             */}
         </>
     );
-}
+});
 
 export default InputV
