@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink, Outlet } from 'react-router-dom'
-import { AppBar, Toolbar, Typography } from '@mui/material';
+import { AppBar, Typography } from '@mui/material';
 
 function Layout(props) {
     return (

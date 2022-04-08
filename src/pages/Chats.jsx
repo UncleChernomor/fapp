@@ -92,6 +92,14 @@ function Chats(props) {
         setOpen(false);
     }
 
+    function deleteChat(id) {
+        console.log('deleteChat-- ' + typeof (id) + ' -- ' + parseInt(id));
+        setMount(false);
+        setMessageList(messages.filter((msg) =>
+            msg.chatId !== parseInt(id)))
+        setTimeout(() => setMount(true), 1000);
+    }
+
     return (
         <MessageContext.Provider value={{ messages, setMessageList }}>
             <Box maxWidth='lg'>
@@ -101,7 +109,7 @@ function Chats(props) {
                     display: "flex",
                     p: 2
                 }}>
-                    <ChatList />
+                    <ChatList deleteChat={deleteChat} />
                     <Outlet />
                 </Box>
                 <Snackbar

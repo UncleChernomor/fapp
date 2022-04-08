@@ -18,8 +18,8 @@ function ModalAddChat(props) {
                                 onChange={(e) => setName(e.target.value)}
                             />
                             <ButtonV onClick={() => {
-                                console.log('Modal clickAdd --- ' + name);
                                 props.add(name);
+                                setName('');
                             }}>Создать</ButtonV>
                             <ButtonV onClick={props.close}>Отмена</ButtonV>
                         </div>

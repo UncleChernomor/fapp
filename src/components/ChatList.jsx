@@ -3,7 +3,7 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate, useParams } from 'react-router-dom';
 import { Divider, ListItemIcon, Box } from '@mui/material';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircle';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
@@ -32,10 +32,8 @@ function ChatList(props) {
     }
 
     function addNewChat(name) {
-        console.log('addNewChat--' + name);
-
         const newChat = {
-            id: chats.length + 1,
+            id: Date.now(),
             name: name,
         }
 
@@ -47,8 +45,12 @@ function ChatList(props) {
         setOpenChat(false);
     }
 
+    const params = useParams();
+    const navigate = useNavigate();
     function delChat() {
-        console.log('delChat');
+        setChats(chats.filter((chat) => chat.id !== parseInt(params.chatId)));
+        props.deleteChat(params.chatId);
+        navigate('/chats');
     }
 
     return (
