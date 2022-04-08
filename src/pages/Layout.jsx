@@ -1,10 +1,8 @@
 import React from 'react';
 import { NavLink, Outlet } from 'react-router-dom'
-import Box from '@mui/material/Box';
 import { AppBar, Toolbar, Typography } from '@mui/material';
 
 function Layout(props) {
-    const classes = [];
     return (
         <>
             <AppBar position='static'>

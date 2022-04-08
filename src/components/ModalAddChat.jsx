@@ -1,8 +1,7 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import './ModalAddChat.css';
 import InputV from './UI/input/InputV';
 import ButtonV from './UI/button/ButtonV';
-import { ChatContext } from '../context/ChatContext';
 
 function ModalAddChat(props) {
     const [name, setName] = useState();

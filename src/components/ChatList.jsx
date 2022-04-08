@@ -8,7 +8,6 @@ import { Divider, ListItemIcon, Box } from '@mui/material';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircle';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import ModalAddChat from "./ModalAddChat";
-import { ChatContext } from '../context/ChatContext';
 
 function ChatList(props) {
     const [chats, setChats] = useState([
