@@ -56,19 +56,6 @@ function Chats(props) {
         </React.Fragment>
     );
 
-    /**
-     * Add element in state messages
-     * @param {*} message object state messages
-     */
-    function createMessage(message) {
-        console.log('chats new message');
-        setMessageList([...messages, message]);
-    }
-
-    function handleClose() {
-        setOpen(false);
-    }
-
     useEffect(() => {
         if (!mount) {
             setMount(true);
@@ -87,6 +74,22 @@ function Chats(props) {
 
     function TransitionDown(props) {
         return <Slide {...props} direction="down" />;
+    }
+
+    /**
+  * Add element in state messages
+  * @param {*} message object state messages
+  */
+    function createMessage(message) {
+        console.log('chats new message');
+        setMessageList([...messages, message]);
+    }
+
+    /**
+     * Close Snackbar
+     */
+    function handleClose() {
+        setOpen(false);
     }
 
     return (

@@ -4,12 +4,14 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import { NavLink } from 'react-router-dom';
-import { Divider, ListItemIcon } from '@mui/material';
+import { Divider, ListItemIcon, Box } from '@mui/material';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircle';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import ModalAddChat from "./ModalAddChat";
+import { ChatContext } from '../context/ChatContext';
 
 function ChatList(props) {
-    const [chats, SetChats] = useState([
+    const [chats, setChats] = useState([
         {
             id: 1,
             name: "chat 1"
@@ -24,8 +26,26 @@ function ChatList(props) {
         },
     ]);
 
-    function addNewChat() {
-        console.log('addNewChat');
+    const [isOpenChat, setOpenChat] = useState(false);
+
+    function addNewChatOpen() {
+        setOpenChat(true);
+    }
+
+    function addNewChat(name) {
+        console.log('addNewChat--' + name);
+
+        const newChat = {
+            id: chats.length + 1,
+            name: name,
+        }
+
+        setChats([...chats, newChat]);
+        setOpenChat(false);
+    }
+
+    function closeModal() {
+        setOpenChat(false);
     }
 
     function delChat() {
@@ -33,7 +53,7 @@ function ChatList(props) {
     }
 
     return (
-        <div>
+        <Box>
             <nav aria-label="secondary mailbox folders">
                 <List sx={{
                     backgroundColor: "info.main",
@@ -56,9 +76,11 @@ function ChatList(props) {
                             </ListItem>
                         )
                     }
-                    <Divider />
+                </List>
+                <Divider />
+                <List sx={{ border: 1 }}>
                     <ListItem>
-                        <ListItemButton onClick={addNewChat}>
+                        <ListItemButton onClick={addNewChatOpen}>
                             <ListItemIcon>
                                 <AddCircleOutlineIcon />
                                 ADD
@@ -73,7 +95,8 @@ function ChatList(props) {
                     </ListItem>
                 </List>
             </nav>
-        </div >
+            <ModalAddChat isOpen={isOpenChat} close={closeModal} add={addNewChat} />
+        </Box >
     );
 }
 
