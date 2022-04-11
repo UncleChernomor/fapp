@@ -1,0 +1,1 @@
+export const SHOW_NAME_PROFILE = 'SHOW_NAME_PROFILE';
