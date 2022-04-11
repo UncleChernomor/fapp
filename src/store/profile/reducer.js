@@ -1,11 +1,11 @@
 import { SHOW_NAME_PROFILE } from "./types";
 
 const initialState = {
-    showName: false,
+    showName: true,
     name: 'Default'
 }
 
-export function profileReducer(state = initialState, action) {
+export const profileReducer = (state = initialState, action) => {
     switch (action.type) {
         case SHOW_NAME_PROFILE:
             return {
