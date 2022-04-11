@@ -1,4 +1,4 @@
-import { SHOW_NAME_PROFILE } from "./types";
+import { SHOW_NAME_PROFILE, SET_USER_NAME } from "./types";
 
 const initialState = {
     showName: true,
@@ -11,6 +11,17 @@ export const profileReducer = (state = initialState, action) => {
             return {
                 ...state, showName: !state.showName,
             };
+        case SET_USER_NAME:
+            return {
+                ...state, name: action.payload,
+            }
+        default:
+            return state;
+    }
+}
+
+export const chatsReducer = (state, action) => {
+    switch (action.type) {
         default:
             return state;
     }
