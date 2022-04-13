@@ -17,9 +17,6 @@ function Chat({ props }) {
             {
                 newMessage.length ? (<MessageList msgs={newMessage} />) : (<h4>чат пуст</h4>)
             }
-
-            {/* <h4 style={{ textAlign: 'center' }} >Chat №{params.chatId}</h4> <MessageList msgs={newMessage} /> */}
-
         </Box>
     );
 }

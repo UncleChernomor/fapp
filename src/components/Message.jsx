@@ -13,8 +13,14 @@ const Message = function (props) {
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel1a-content"
                 id={props.msg.title}
+                sx={{ display: 'flex', justifyContent: 'space-between' }}
             >
-                <Typography variant="h6" component="h3">{props.msg.title}</Typography>
+                <div>
+                    <Typography sx={{ display: 'block' }} variant="subtitle1" component="div">Автор: {props.msg.author}</Typography>
+                    <Typography sx={{ display: 'block' }} variant="subtitle1" component="div">Тема: {props.msg.title}</Typography>
+                </div>
+
+
             </AccordionSummary>
             <AccordionDetails>
                 <Typography>

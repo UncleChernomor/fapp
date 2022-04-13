@@ -1,31 +1,32 @@
 import React, { useState } from 'react';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import { NavLink, useNavigate, useParams } from 'react-router-dom';
-import { Divider, ListItemIcon, Box } from '@mui/material';
+import { List, ListItem, Divider, ListItemIcon, Box, ListItemButton } from '@mui/material';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircle';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import ModalAddChat from "./ModalAddChat";
+import { useDispatch, useSelector } from 'react-redux';
 
 function ChatList(props) {
-    const [chats, setChats] = useState([
-        {
-            id: 1,
-            name: "chat 1"
-        },
-        {
-            id: 2,
-            name: "chat 2"
-        },
-        {
-            id: 3,
-            name: "chat 3"
-        },
-    ]);
+    // const [chats, setChats] = useState([
+    //     {
+    //         id: 1,
+    //         name: "chat 1"
+    //     },
+    //     {
+    //         id: 2,
+    //         name: "chat 2"
+    //     },
+    //     {
+    //         id: 3,
+    //         name: "chat 3"
+    //     },
+    // ]);
 
     const [isOpenChat, setOpenChat] = useState(false);
+
+    const { chats } = useSelector((state) => state);
+    const dispatch = useDispatch();
 
     function addNewChatOpen() {
         setOpenChat(true);
@@ -37,7 +38,9 @@ function ChatList(props) {
             name: name,
         }
 
-        setChats([...chats, newChat]);
+        dispatch()
+        // setChats([...chats, newChat]);
+
         setOpenChat(false);
     }
 
@@ -48,9 +51,9 @@ function ChatList(props) {
     const params = useParams();
     const navigate = useNavigate();
     function delChat() {
-        setChats(chats.filter((chat) => chat.id !== parseInt(params.chatId)));
-        props.deleteChat(params.chatId);
-        navigate('/chats');
+        //setChats(chats.filter((chat) => chat.id !== parseInt(params.chatId)));
+        // props.deleteChat(params.chatId);
+        // navigate('/chats');
     }
 
     return (

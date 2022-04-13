@@ -8,16 +8,25 @@ export function showNameProfile() {
     }
 }
 
-export function setUserName() {
+export function setUserName(name) {
     return {
         type: SET_USER_NAME,
+        payload: name
     }
 }
 
-//For chats
-export function addChat() {
+/**
+ * 
+ * @param {string} name name new chat
+ * @returns object for add chat
+ */
+export function addChat(name) {
     return {
         type: ADD_CHAT,
+        payload: {
+            chatId: Date.now(),
+            name,
+        }
     }
 }
 

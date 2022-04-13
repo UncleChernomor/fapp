@@ -3,14 +3,19 @@ import ButtonV from "./UI/button/ButtonV";
 import InputV from "./UI/input/InputV";
 import Box from '@mui/material/Box';
 import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 function MessageForm({ createMsg, ...props }) {
+
     const [post, setPost] = useState({
         author: '',
         header: '',
         body: '',
         chatId: undefined
     });
+
+    const profileName = useSelector((state) => state.name);
+    console.log(profileName);
 
     const refFocus = useRef();
     const { chatId } = useParams();
@@ -49,15 +54,27 @@ function MessageForm({ createMsg, ...props }) {
         <Box
             component="form"
         >
-            <InputV
-                autoFocus
-                ref={refFocus}
-                type='text'
-                value={post.author}
-                placeholder="автор"
-                label="автор"
-                onChange={e => setPost({ ...post, author: e.target.value })}
-            />
+            {
+                post.author.length > 1 ? <InputV
+                    disabled
+                    autoFocus
+                    ref={refFocus}
+                    type='text'
+                    value={post.author}
+                    placeholder="автор"
+                    label="автор"
+                    onChange={e => setPost({ ...post, author: e.target.value })}
+                /> : <InputV
+                    autoFocus
+                    ref={refFocus}
+                    type='text'
+                    value={post.author}
+                    placeholder="автор"
+                    label="автор"
+                    onChange={e => setPost({ ...post, author: e.target.value })}
+                />
+            }
+
             <InputV
                 type='text'
                 value={post.header}
