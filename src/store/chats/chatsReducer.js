@@ -20,7 +20,6 @@ const initialState = {
 export default function chatsReduser(state = initialState, action) {
     switch (action.type) {
         case ADD_CHAT:
-            //state.chats.push(action.payload);
             return {
                 ...state,
                 chats: [...state.chats, action.payload],

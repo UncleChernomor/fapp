@@ -7,5 +7,5 @@ export const ADD_CHAT = 'ADD_CHAT';
 export const REMOVE_CHAT = 'REMOVE_CHAT';
 
 //Types for messages
-export const ADD_NEW_MESSAGE = 'ADD_MESSAGE';
+export const ADD_NEW_MESSAGE = 'ADD_NEW_MESSAGE';
 

@@ -3,9 +3,15 @@ import ButtonV from "./UI/button/ButtonV";
 import InputV from "./UI/input/InputV";
 import Box from '@mui/material/Box';
 import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { addMessage } from '../store/messages/actions';
 
-function MessageForm({ createMsg, ...props }) {
+/**
+ * added message in the array messages
+ * @param {object} param List properties html elements
+ * @returns component form for added message
+ */
+function MessageForm({ props }) {
 
     const [post, setPost] = useState({
         author: '',
@@ -18,11 +24,13 @@ function MessageForm({ createMsg, ...props }) {
     const profileName = useSelector((state) => state.profile.name);
     const refFocus = useRef();
     const { chatId } = useParams();
+    const { messages } = useSelector((state) => state.messages);
+    const dispatch = useDispatch();
 
 
     useEffect(() => {
         refFocus.current.focus();
-    })
+    });
 
     const addNewMessage = (e) => {
 
@@ -34,13 +42,15 @@ function MessageForm({ createMsg, ...props }) {
             chatId === undefined) return;
 
         const newMessage = {
+            id: Date.now(),
             author: post.author,
             title: post.header,
             body: post.body,
             chatId: parseInt(chatId),
         }
 
-        createMsg(newMessage);
+        console.log('здесь надо диспатч нового сообщения');
+        dispatch(addMessage(newMessage));
 
         setPost({
             author: '',
@@ -54,7 +64,7 @@ function MessageForm({ createMsg, ...props }) {
             component="form"
         >
             {
-                (post.author !== 'Default' && post.author.length > 1) ? <InputV
+                (post.author === 'Default' && post.author.length > 20) ? <InputV
                     disabled
                     autoFocus
                     ref={refFocus}

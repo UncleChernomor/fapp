@@ -1,9 +1,9 @@
 import { ADD_NEW_MESSAGE } from "../types";
 
 
-export function addNewMessage(post) {
+export function addMessage(post) {
     return {
         type: ADD_NEW_MESSAGE,
-        post,
+        payload: post
     }
 }

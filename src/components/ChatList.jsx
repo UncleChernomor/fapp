@@ -27,18 +27,31 @@ function ChatList(props) {
     const { chats } = useSelector((state) => state.chats);
     const dispatch = useDispatch();
 
+    //working with modal window
+    //for added new chat
+    /**
+     * set modal window  is open
+     */
     function addNewChatOpen() {
         setOpenChat(true);
     }
 
-    function addNewChat(name) {
-
-        dispatch(addChat(name));
-        // setChats([...chats, newChat]);
+    /**
+     * set modal window  is close
+     */
+    function closeModal() {
         setOpenChat(false);
     }
 
-    function closeModal() {
+
+    /**
+     * call dispatch for added chat
+     * @param {string} name name of chat
+     */
+    function addNewChat(name) {
+
+        dispatch(addChat(name));
+
         setOpenChat(false);
     }
 
