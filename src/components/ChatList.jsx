@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import ListItemText from '@mui/material/ListItemText';
 import { NavLink, useNavigate, useParams } from 'react-router-dom';
-import { List, ListItem, Divider, ListItemIcon, Box, ListItemButton } from '@mui/material';
+import { List, ListItem, Divider, ListItemIcon, Box, ListItemButton, ListItemText } from '@mui/material';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircle';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import ModalAddChat from "./ModalAddChat";
 import { useDispatch, useSelector } from 'react-redux';
+import { addChat, removeChat } from '../store/chats/actions';
 
 function ChatList(props) {
     // const [chats, setChats] = useState([
@@ -24,8 +24,7 @@ function ChatList(props) {
     // ]);
 
     const [isOpenChat, setOpenChat] = useState(false);
-
-    const { chats } = useSelector((state) => state);
+    const { chats } = useSelector((state) => state.chats);
     const dispatch = useDispatch();
 
     function addNewChatOpen() {
@@ -33,14 +32,9 @@ function ChatList(props) {
     }
 
     function addNewChat(name) {
-        const newChat = {
-            id: Date.now(),
-            name: name,
-        }
 
-        dispatch()
+        dispatch(addChat(name));
         // setChats([...chats, newChat]);
-
         setOpenChat(false);
     }
 
@@ -50,10 +44,10 @@ function ChatList(props) {
 
     const params = useParams();
     const navigate = useNavigate();
+
     function delChat() {
-        //setChats(chats.filter((chat) => chat.id !== parseInt(params.chatId)));
-        // props.deleteChat(params.chatId);
-        // navigate('/chats');
+        dispatch(removeChat(parseInt(params.chatId)));
+        navigate('/chats');
     }
 
     return (
@@ -65,10 +59,10 @@ function ChatList(props) {
                 }}>
                     {
                         chats.map((item) =>
-                            <ListItem disablePadding key={item.id}>
+                            <ListItem disablePadding>
                                 <ListItemButton>
                                     <ListItemText>
-                                        <NavLink to={`/chats/${item.id}`} style={({ isActive }) => {
+                                        <NavLink key={item.id} to={`/chats/${item.id}`} style={({ isActive }) => {
                                             return {
                                                 display: "block",
                                                 margin: "1rem 0",

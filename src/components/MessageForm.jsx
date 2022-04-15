@@ -14,15 +14,13 @@ function MessageForm({ createMsg, ...props }) {
         chatId: undefined
     });
 
-    const profileName = useSelector((state) => state.name);
-    console.log(profileName);
-
+    const profileName = useSelector((state) => state.profile.name);
     const refFocus = useRef();
     const { chatId } = useParams();
+
     useEffect(() => {
         refFocus.current.focus();
     })
-
 
     const addNewMessage = (e) => {
 
