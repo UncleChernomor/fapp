@@ -8,7 +8,7 @@ const initialState = {
     chatId: undefined
 };
 
-export default function messageReducer(state = initialState, action) {
+export default function messagesReducer(state = initialState, action) {
     if (action === ADD_NEW_MESSAGE) {
         return {
             ...state,

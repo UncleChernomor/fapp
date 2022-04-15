@@ -19,6 +19,7 @@ function MessageForm({ createMsg, ...props }) {
     const refFocus = useRef();
     const { chatId } = useParams();
 
+
     useEffect(() => {
         refFocus.current.focus();
     })
