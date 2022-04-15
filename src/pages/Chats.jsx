@@ -16,7 +16,7 @@ function Chats(props) {
      */
     const [open, setOpen] = useState(false);
     const [mount, setMount] = useState(false);
-    const messages = useSelector(getStoreMessages);
+    const messages = useSelector(getStoreMessages, shallowEqual);
 
     const action = (
         <React.Fragment>
@@ -35,8 +35,8 @@ function Chats(props) {
     );
 
     useEffect(() => {
-        if (messages.length > 0)
-            console.log('messages 111 - : ' + messages[messages.length - 1].author);
+        //почему здесь длина массива messages == undefined ?
+        console.log('use effect chats: ' + messages.length);
 
         if (!mount) {
             setMount(true);
@@ -53,15 +53,6 @@ function Chats(props) {
     function TransitionDown(props) {
         return <Slide {...props} direction="down" />;
     }
-
-    /**
-  * Add element in state messages
-  * @param {*} message object state messages
-  */
-    // function createMessage(message) {
-    //     console.log('chats new message');
-    //     setMessageList([...messages, message]);
-    // }
 
     /**
      * Close Snackbar
