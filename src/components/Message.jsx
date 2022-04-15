@@ -4,17 +4,22 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-//import './Message.css';
 
 const Message = function (props) {
+    window.prop = props;
+
     return (
         <Accordion>
             <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel1a-content"
                 id={props.msg.title}
+                sx={{ display: 'flex', justifyContent: 'space-between' }}
             >
-                <Typography variant="h6" component="h3">{props.msg.title}</Typography>
+                <div>
+                    <Typography sx={{ display: 'block' }} variant="subtitle1" component="div">Автор: {props.msg.author}</Typography>
+                    <Typography sx={{ display: 'block' }} variant="subtitle1" component="div">Тема: {props.msg.title}</Typography>
+                </div>
             </AccordionSummary>
             <AccordionDetails>
                 <Typography>
@@ -22,10 +27,6 @@ const Message = function (props) {
                 </Typography>
             </AccordionDetails>
         </Accordion>
-        // <div className="Message">
-        //     <h2 className="Message-header">{props.msg.title}</h2>
-        //     <p>{props.msg.body}</p>
-        // </div>
     );
 }
 

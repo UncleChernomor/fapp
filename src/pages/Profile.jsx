@@ -1,27 +1,34 @@
 import React, { useCallback, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { store } from '../store';
-import { showNameProfile } from '../store/profile/actions';
+import { setUserName, showNameProfile } from '../store/profile/actions';
 
 function Profile(props) {
-    const [dummy, setDummy] = useState();
-    const { showName, name } = store.getState();
-    window.store = store;
+    const [value, setValue] = useState();
+    const { showName, name } = useSelector((state) => state.profile);
+    const dispatch = useDispatch();
 
-    const setShowName = () => {
+    console.log(name + ' ' + showName);
+
+    const setShowName = (() => {
         store.dispatch(showNameProfile());
-        setDummy({});
+    });
+
+    const changeName = () => {
+        dispatch(setUserName(value));
+        setValue('');
     };
 
     return (
         <div>
-            <h4>Profile</h4>
-            <div>&nbsp;
-                {showName && (<span>{name}</span>)}
-            </div>
-            <input type="checkbox" onChange={setShowName} value={showName} checked={showName} />
+            <h3 style={{ textAlign: 'center' }}>Profile Page {name}</h3>
+            <h4>&nbsp;
+                {showName && (<span>USER: {name}</span>)}
+            </h4>
+            <input type="text" value={value} onChange={(e) => { setValue(e.target.value) }} />
+            <button onClick={changeName}>add name</button>
         </div>
     );
-
 }
 
 export default Profile;

@@ -8,7 +8,8 @@ const MessageList = function ({ msgs }) {
             sx={{
                 width: "100 %",
                 backgroundColor: "info.main",
-                p: 1
+                color: 'white',
+                p: 2
             }}
         >
             <h4>you choosed CHAT №{msgs[0].chatId}</h4>

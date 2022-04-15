@@ -1,55 +1,52 @@
 import React, { useState } from 'react';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
 import { NavLink, useNavigate, useParams } from 'react-router-dom';
-import { Divider, ListItemIcon, Box } from '@mui/material';
+import { List, ListItem, Divider, ListItemIcon, Box, ListItemButton, ListItemText } from '@mui/material';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircle';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import ModalAddChat from "./ModalAddChat";
+import { shallowEqual, useDispatch, useSelector } from 'react-redux';
+import { addChat, removeChat } from '../store/chats/actions';
+import getChats from '../store/chats/selectors';
 
 function ChatList(props) {
-    const [chats, setChats] = useState([
-        {
-            id: 1,
-            name: "chat 1"
-        },
-        {
-            id: 2,
-            name: "chat 2"
-        },
-        {
-            id: 3,
-            name: "chat 3"
-        },
-    ]);
 
     const [isOpenChat, setOpenChat] = useState(false);
+    const { chats } = useSelector(getChats, shallowEqual);
+    const dispatch = useDispatch();
 
+    //working with modal window
+    //for added new chat
+    /**
+     * set modal window  is open
+     */
     function addNewChatOpen() {
         setOpenChat(true);
     }
 
-    function addNewChat(name) {
-        const newChat = {
-            id: Date.now(),
-            name: name,
-        }
-
-        setChats([...chats, newChat]);
+    /**
+     * set modal window  is close
+     */
+    function closeModal() {
         setOpenChat(false);
     }
 
-    function closeModal() {
+
+    /**
+     * call dispatch for added chat
+     * @param {string} name name of chat
+     */
+    function addNewChat(name) {
+
+        dispatch(addChat(name));
+
         setOpenChat(false);
     }
 
     const params = useParams();
     const navigate = useNavigate();
+
     function delChat() {
-        setChats(chats.filter((chat) => chat.id !== parseInt(params.chatId)));
-        props.deleteChat(params.chatId);
+        dispatch(removeChat(parseInt(params.chatId)));
         navigate('/chats');
     }
 
@@ -63,17 +60,20 @@ function ChatList(props) {
                     {
                         chats.map((item) =>
                             <ListItem disablePadding key={item.id}>
-                                <ListItemButton>
-                                    <ListItemText>
-                                        <NavLink to={`/chats/${item.id}`} style={({ isActive }) => {
-                                            return {
-                                                display: "block",
-                                                margin: "1rem 0",
-                                                color: isActive ? "red" : "white",
-                                            };
-                                        }}> {item.name}</NavLink>
-                                    </ListItemText>
-                                </ListItemButton>
+                                <NavLink to={`/chats/${item.id}`} style={({ isActive }) => {
+                                    return {
+                                        display: "block",
+                                        width: '100%',
+                                        margin: "1rem 0",
+                                        color: isActive ? "red" : "white",
+                                    };
+                                }}>
+                                    <ListItemButton>
+                                        <ListItemText>
+                                            {item.name}
+                                        </ListItemText>
+                                    </ListItemButton>
+                                </NavLink>
                             </ListItem>
                         )
                     }
