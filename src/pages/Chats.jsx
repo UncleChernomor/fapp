@@ -3,42 +3,20 @@ import { Outlet } from "react-router-dom";
 import CssBaseline from '@mui/material/CssBaseline';
 import { Box, Snackbar, Button, IconButton, Slide, Alert } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-import { MessageContext } from '../context';
 import ChatList from "../components/ChatList.jsx";
 import MessageForm from "../components/MessageForm.jsx";
+import { shallowEqual, useSelector } from "react-redux";
+import getStoreMessages from "../store/messages/selectors";
 
 
 function Chats(props) {
-
-    const [messages, setMessageList] = useState([
-        {
-            id: 1,
-            chatId: 1,
-            author: 'vasya',
-            title: 'message 1',
-            body: 'message 1 body there'
-        },
-        {
-            id: 2,
-            chatId: 1,
-            author: 'fedya',
-            title: 'message 2',
-            body: 'message 2 body there'
-        },
-        {
-            id: 3,
-            chatId: 2,
-            author: 'vasya',
-            title: 'message 3',
-            body: 'message 3 body there'
-        },
-    ]);
 
     /**
      * isOpen Snackbar for the robot's response to the added message
      */
     const [open, setOpen] = useState(false);
     const [mount, setMount] = useState(false);
+    const messages = useSelector(getStoreMessages);
 
     const action = (
         <React.Fragment>
@@ -57,19 +35,19 @@ function Chats(props) {
     );
 
     useEffect(() => {
+        if (messages.length > 0)
+            console.log('messages 111 - : ' + messages[messages.length - 1].author);
+
         if (!mount) {
             setMount(true);
         } else {
-            if (messages[messages.length - 1].author.length > 0) {
+            if ((messages.length > 0) && (messages[messages.length - 1].author.length > 0)) {
+                console.log('messages 222 - : ' + messages[messages.length - 1].author);
                 setTimeout(() => {
                     setOpen(true);
                 }, 1500);
             }
         }
-
-
-        //Настроить фокус --- НЕ ЗАБЫТЬ!!!
-        // refFocus.current?.focus():null;
     }, [messages]);
 
     function TransitionDown(props) {
@@ -80,10 +58,10 @@ function Chats(props) {
   * Add element in state messages
   * @param {*} message object state messages
   */
-    function createMessage(message) {
-        console.log('chats new message');
-        setMessageList([...messages, message]);
-    }
+    // function createMessage(message) {
+    //     console.log('chats new message');
+    //     setMessageList([...messages, message]);
+    // }
 
     /**
      * Close Snackbar
@@ -95,38 +73,35 @@ function Chats(props) {
     function deleteChat(id) {
         console.log('deleteChat-- ' + typeof (id) + ' -- ' + parseInt(id));
         setMount(false);
-        setMessageList(messages.filter((msg) =>
-            msg.chatId !== parseInt(id)))
+        console.log('удалить чат');
         setTimeout(() => setMount(true), 1000);
     }
 
     return (
-        <MessageContext.Provider value={{ messages, setMessageList }}>
-            <Box maxWidth='lg'>
-                <CssBaseline />
-                <MessageForm createMsg={createMessage} />
-                <Box sx={{
-                    display: "flex",
-                    p: 2
-                }}>
-                    <ChatList deleteChat={deleteChat} />
-                    <Outlet />
-                </Box>
-                <Snackbar
-                    severity='success'
-                    open={open}
-                    autoHideDuration={3000}
-                    onClose={handleClose}
-                    message="Message added"
-                    action={action}
-                    TransitionComponent={TransitionDown}
-                >
-                    <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
-                        This is a success message!
-                    </Alert>
-                </Snackbar>
+        <Box maxWidth='lg'>
+            <CssBaseline />
+            <MessageForm />
+            <Box sx={{
+                display: "flex",
+                p: 2
+            }}>
+                <ChatList deleteChat={deleteChat} />
+                <Outlet />
             </Box>
-        </MessageContext.Provider >
+            <Snackbar
+                severity='success'
+                open={open}
+                autoHideDuration={3000}
+                onClose={handleClose}
+                message="Message added"
+                action={action}
+                TransitionComponent={TransitionDown}
+            >
+                <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+                    This is a success message!
+                </Alert>
+            </Snackbar>
+        </Box>
     );
 }
 

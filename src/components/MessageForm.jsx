@@ -3,7 +3,7 @@ import ButtonV from "./UI/button/ButtonV";
 import InputV from "./UI/input/InputV";
 import Box from '@mui/material/Box';
 import { useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { addMessage } from '../store/messages/actions';
 
 /**
@@ -24,7 +24,6 @@ function MessageForm({ props }) {
     const profileName = useSelector((state) => state.profile.name);
     const refFocus = useRef();
     const { chatId } = useParams();
-    const { messages } = useSelector((state) => state.messages);
     const dispatch = useDispatch();
 
 
@@ -49,7 +48,7 @@ function MessageForm({ props }) {
             chatId: parseInt(chatId),
         }
 
-        console.log('здесь надо диспатч нового сообщения');
+        console.log('здесь надо диспатч нового сообщения: ' + newMessage.author);
         dispatch(addMessage(newMessage));
 
         setPost({

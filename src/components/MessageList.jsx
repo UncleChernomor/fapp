@@ -1,7 +1,6 @@
 import * as React from "react";
 import Stack from "@mui/material/Stack";
 import Message from "./Message";
-import { useSelector } from "react-redux";
 
 const MessageList = function ({ msgs }) {
     return (

@@ -4,9 +4,10 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-//import './Message.css';
 
 const Message = function (props) {
+    window.prop = props;
+
     return (
         <Accordion>
             <AccordionSummary
@@ -19,8 +20,6 @@ const Message = function (props) {
                     <Typography sx={{ display: 'block' }} variant="subtitle1" component="div">Автор: {props.msg.author}</Typography>
                     <Typography sx={{ display: 'block' }} variant="subtitle1" component="div">Тема: {props.msg.title}</Typography>
                 </div>
-
-
             </AccordionSummary>
             <AccordionDetails>
                 <Typography>

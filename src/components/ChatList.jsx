@@ -4,27 +4,14 @@ import { List, ListItem, Divider, ListItemIcon, Box, ListItemButton, ListItemTex
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircle';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import ModalAddChat from "./ModalAddChat";
-import { useDispatch, useSelector } from 'react-redux';
+import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { addChat, removeChat } from '../store/chats/actions';
+import getChats from '../store/chats/selectors';
 
 function ChatList(props) {
-    // const [chats, setChats] = useState([
-    //     {
-    //         id: 1,
-    //         name: "chat 1"
-    //     },
-    //     {
-    //         id: 2,
-    //         name: "chat 2"
-    //     },
-    //     {
-    //         id: 3,
-    //         name: "chat 3"
-    //     },
-    // ]);
 
     const [isOpenChat, setOpenChat] = useState(false);
-    const { chats } = useSelector((state) => state.chats);
+    const { chats } = useSelector(getChats, shallowEqual);
     const dispatch = useDispatch();
 
     //working with modal window
@@ -72,18 +59,21 @@ function ChatList(props) {
                 }}>
                     {
                         chats.map((item) =>
-                            <ListItem disablePadding>
-                                <ListItemButton>
-                                    <ListItemText>
-                                        <NavLink key={item.id} to={`/chats/${item.id}`} style={({ isActive }) => {
-                                            return {
-                                                display: "block",
-                                                margin: "1rem 0",
-                                                color: isActive ? "red" : "white",
-                                            };
-                                        }}> {item.name}</NavLink>
-                                    </ListItemText>
-                                </ListItemButton>
+                            <ListItem disablePadding key={item.id}>
+                                <NavLink to={`/chats/${item.id}`} style={({ isActive }) => {
+                                    return {
+                                        display: "block",
+                                        width: '100%',
+                                        margin: "1rem 0",
+                                        color: isActive ? "red" : "white",
+                                    };
+                                }}>
+                                    <ListItemButton>
+                                        <ListItemText>
+                                            {item.name}
+                                        </ListItemText>
+                                    </ListItemButton>
+                                </NavLink>
                             </ListItem>
                         )
                     }

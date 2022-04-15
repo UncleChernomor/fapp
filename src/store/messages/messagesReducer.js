@@ -1,7 +1,15 @@
 import { ADD_NEW_MESSAGE } from "../types";
 
 const initialState = {
-    messages: []
+    messages: [
+        {
+            id: 111111,
+            author: 'VVVVVVVVVVVVV',
+            title: 'TITLE_11111',
+            body: 'BODY_11111111111111',
+            chatId: 1,
+        }
+    ]
 };
 
 export default function messagesReducer(state = initialState, action) {
