@@ -14,6 +14,7 @@ function MessageForm({ createMsg, ...props }) {
         chatId: undefined
     });
 
+
     const profileName = useSelector((state) => state.profile.name);
     const refFocus = useRef();
     const { chatId } = useParams();
@@ -32,7 +33,6 @@ function MessageForm({ createMsg, ...props }) {
             chatId === undefined) return;
 
         const newMessage = {
-            id: Date.now(),
             author: post.author,
             title: post.header,
             body: post.body,
@@ -53,7 +53,7 @@ function MessageForm({ createMsg, ...props }) {
             component="form"
         >
             {
-                post.author.length > 1 ? <InputV
+                (post.author !== 'Default' && post.author.length > 1) ? <InputV
                     disabled
                     autoFocus
                     ref={refFocus}
