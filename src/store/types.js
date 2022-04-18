@@ -11,3 +11,6 @@ export const ADD_NEW_MESSAGE = 'ADD_NEW_MESSAGE';
 export const SHOW_ROBOT = 'SHOW_ROBOT';
 export const HIDE_ROBOT = 'HIDE_ROBOT';
 
+//Type for API
+export const GET_DATA_API = 'GET_DATA_API';
+

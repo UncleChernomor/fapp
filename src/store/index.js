@@ -5,11 +5,13 @@ import messagesReducer from "./messages/messagesReducer";
 import profileReducer from "./profile/reducerProfile";
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+import { useApiReducer } from "./api/useApiReducer";
 
 const rootReducer = combineReducers({
     profile: profileReducer,
     chats: chatsReducer,
     messages: messagesReducer,
+    api: useApiReducer,
 });
 
 const persistConfig = {
