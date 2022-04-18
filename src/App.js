@@ -9,6 +9,7 @@ import Layout from "./pages/Layout.jsx";
 import { Provider } from "react-redux";
 import { store, persistor } from './store';
 import { PersistGate } from "redux-persist/integration/react";
+import WorkWithApi from "./pages/WorkWithApi.jsx";
 
 function App(props) {
 
@@ -27,6 +28,7 @@ function App(props) {
               <Route path=":chatId" element={<Chat />} />
               <Route path="*" element={<NoFoundPage />} />
             </Route>
+            <Route path="/useapi" element={<WorkWithApi />} />
             <Route path="/" element={<Home />} />
             <Route path="*" element={<NoFoundPage />} />
           </Routes>
