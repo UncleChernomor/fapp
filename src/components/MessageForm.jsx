@@ -21,6 +21,7 @@ function MessageForm({ props }) {
     });
 
 
+    //не удаляем, надо будет для показа или нет формы ввода автора
     const profileName = useSelector((state) => state.profile.name);
     const refFocus = useRef();
     const { chatId } = useParams();
@@ -48,7 +49,6 @@ function MessageForm({ props }) {
             chatId: parseInt(chatId),
         }
 
-        console.log('здесь надо диспатч нового сообщения: ' + newMessage.author);
         dispatch(addMessage(newMessage));
 
         setPost({

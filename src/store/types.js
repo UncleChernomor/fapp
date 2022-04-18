@@ -8,4 +8,6 @@ export const REMOVE_CHAT = 'REMOVE_CHAT';
 
 //Types for messages
 export const ADD_NEW_MESSAGE = 'ADD_NEW_MESSAGE';
+export const SHOW_ROBOT = 'SHOW_ROBOT';
+export const HIDE_ROBOT = 'HIDE_ROBOT';
 
