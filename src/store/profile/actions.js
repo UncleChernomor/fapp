@@ -1,5 +1,4 @@
 import { SHOW_NAME_PROFILE, SET_USER_NAME } from "../types";
-import { ADD_CHAT, REMOVE_CHAT } from "../types";
 
 //For profile 
 export function showNameProfile() {

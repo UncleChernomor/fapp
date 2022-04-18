@@ -15,7 +15,6 @@ function Chats(props) {
     /**
      * isOpen Snackbar for the robot's response to the added message
      */
-    const [open, setOpen] = useState(false);
     const [mount, setMount] = useState(false);
     const { isShowRobot, messages } = useSelector(getStoreMessages, shallowEqual);
     const dispatch = useDispatch();

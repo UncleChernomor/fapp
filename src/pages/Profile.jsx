@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { store } from '../store';
 import { setUserName, showNameProfile } from '../store/profile/actions';

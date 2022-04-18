@@ -21,6 +21,7 @@ function MessageForm({ props }) {
     });
 
 
+    //не удаляем, надо будет для показа или нет формы ввода автора
     const profileName = useSelector((state) => state.profile.name);
     const refFocus = useRef();
     const { chatId } = useParams();

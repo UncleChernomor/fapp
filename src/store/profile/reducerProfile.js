@@ -1,4 +1,4 @@
-import { SHOW_NAME_PROFILE, SET_USER_NAME, ADD_CHAT, REMOVE_CHAT } from "../types";
+import { SHOW_NAME_PROFILE, SET_USER_NAME } from "../types";
 
 const initialState = {
     showName: true,
