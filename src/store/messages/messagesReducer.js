@@ -1,6 +1,7 @@
-import { ADD_NEW_MESSAGE } from "../types";
+import { ADD_NEW_MESSAGE, SHOW_ROBOT, HIDE_ROBOT } from "../types";
 
 const initialState = {
+    isShowRobot: false,
     messages: [
         {
             id: 111111,
@@ -17,6 +18,16 @@ export default function messagesReducer(state = initialState, action) {
         return {
             ...state,
             messages: [...state.messages, action.payload],
+        }
+    } else if (action.type === SHOW_ROBOT) {
+        return {
+            ...state,
+            isShowRobot: true,
+        }
+    } else if (action.type === HIDE_ROBOT) {
+        return {
+            ...state,
+            isShowRobot: false,
         }
     }
 

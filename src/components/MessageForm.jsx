@@ -48,7 +48,6 @@ function MessageForm({ props }) {
             chatId: parseInt(chatId),
         }
 
-        console.log('здесь надо диспатч нового сообщения: ' + newMessage.author);
         dispatch(addMessage(newMessage));
 
         setPost({

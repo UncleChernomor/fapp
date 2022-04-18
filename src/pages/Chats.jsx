@@ -5,8 +5,9 @@ import { Box, Snackbar, Button, IconButton, Slide, Alert } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import ChatList from "../components/ChatList.jsx";
 import MessageForm from "../components/MessageForm.jsx";
-import { shallowEqual, useSelector } from "react-redux";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import getStoreMessages from "../store/messages/selectors";
+import { middlewareShowRobot, hideRobot } from "../store/messages/actions.js";
 
 
 function Chats(props) {
@@ -16,7 +17,8 @@ function Chats(props) {
      */
     const [open, setOpen] = useState(false);
     const [mount, setMount] = useState(false);
-    const messages = useSelector(getStoreMessages, shallowEqual);
+    const { isShowRobot, messages } = useSelector(getStoreMessages, shallowEqual);
+    const dispatch = useDispatch();
 
     const action = (
         <React.Fragment>
@@ -41,12 +43,8 @@ function Chats(props) {
         if (!mount) {
             setMount(true);
         } else {
-            if ((messages.length > 0) && (messages[messages.length - 1].author.length > 0)) {
-                console.log('messages 222 - : ' + messages[messages.length - 1].author);
-                setTimeout(() => {
-                    setOpen(true);
-                }, 1500);
-            }
+            console.log('Длина сообщения: ' + messages.length)
+            dispatch(middlewareShowRobot());
         }
     }, [messages]);
 
@@ -58,11 +56,10 @@ function Chats(props) {
      * Close Snackbar
      */
     function handleClose() {
-        setOpen(false);
+        dispatch(hideRobot());
     }
 
     function deleteChat(id) {
-        console.log('deleteChat-- ' + typeof (id) + ' -- ' + parseInt(id));
         setMount(false);
         console.log('удалить чат');
         setTimeout(() => setMount(true), 1000);
@@ -81,7 +78,7 @@ function Chats(props) {
             </Box>
             <Snackbar
                 severity='success'
-                open={open}
+                open={isShowRobot}
                 autoHideDuration={3000}
                 onClose={handleClose}
                 message="Message added"
