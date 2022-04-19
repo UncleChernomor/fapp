@@ -1,0 +1,16 @@
+.Api {
+    width: 400px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.Name {
+    width: 40%;
+    border: 1px solid #777;
+}
+
+.Rate {
+    border: 1px solid #777;
+    flex-grow: 1;
+    text-align: right;
+}
