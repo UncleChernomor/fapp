@@ -1,3 +1,3 @@
 export function getDataApi(state) {
-    return state.items;
+    return state.api;
 }

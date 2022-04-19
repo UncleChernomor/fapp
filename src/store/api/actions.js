@@ -1,10 +1,20 @@
-import { GET_DATA_API } from "../types";
+import { GET_DATA_API, START_LOAD } from "../types";
 
 export function readDataFromServer(data) {
     return {
         type: GET_DATA_API,
-        payload: data,
+        payload: {
+            data,
+            isLoad: true
+        }
     }
+}
+
+export function startLoading() {
+    return {
+        type: START_LOAD,
+    }
+
 }
 
 export const middlewareReadData = () => {
