@@ -1,14 +1,14 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
 import Layout from "./pages/Layout.jsx";
 import { Provider } from "react-redux";
 import { store, persistor } from './store';
 import { PersistGate } from "redux-persist/integration/react";
 import PrivateRoutes from "./components/PrivateRoutes.jsx";
 import PublicRoutes from "./components/PublicRoutes.jsx";
+import './AppStyle.css'
 
 function App(props) {
-  const user = true;
+  const user = false;
 
   return (
     <>

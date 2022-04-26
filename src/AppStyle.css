@@ -1,7 +1,10 @@
-.App {
+body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+.App {
     width: calc(100% * 0.8);
     color: black;
     background-color: rgb(253, 253, 246);
