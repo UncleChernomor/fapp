@@ -2,9 +2,9 @@ import React from 'react';
 
 function Home(props) {
     return (
-        <div sx="color: black">
+        <main sx="color: black">
             <h1>Home Page</h1>
-        </div>
+        </main>
     );
 }
 

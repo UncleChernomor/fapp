@@ -21,7 +21,7 @@ function WorkWithApi(props) {
     }, [items]);
 
     return (
-        <>
+        <main>
             <div>
                 <ButtonV onClick={clickHandler}>
                     Get DATA
@@ -47,7 +47,7 @@ function WorkWithApi(props) {
                         }
                     </div>
             }
-        </>
+        </main>
 
     );
 }
