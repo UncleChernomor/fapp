@@ -1,23 +1,37 @@
-import { Typography } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import ButtonV from '../button/ButtonV';
 
 function NavbarPublic(props) {
     return (
-        <>
-            <NavLink style={{ margin: '10px', fontSize: '20px' }} to={"/"}>
-                Home
-            </NavLink>
+        <Grid
+            container
+            justifyContent='space-between'
+            alignItems='center'
+        >
+            <Grid item>
+                <NavLink style={{ margin: '10px', fontSize: '20px' }} to={"/"}>
+                    <ButtonV style={{ color: 'inherit' }}>
+                        Home
+                    </ButtonV>
+                </NavLink>
 
-            <NavLink style={{ margin: '10px', fontSize: '20px' }} to={"/useapi"}>
-                <Typography
-                    variant="h6"
-                    component="span"
-                >
-                    Use API
-                </Typography>
-            </NavLink>
-        </>
+                <NavLink style={{ margin: '10px', fontSize: '20px' }} to={"/useapi"}>
+                    <ButtonV style={{ color: 'inherit' }}>
+                        Use API
+                    </ButtonV>
+                </NavLink>
+            </Grid>
+            <Grid item>
+                <NavLink style={{ margin: '10px', fontSize: '20px' }} to={"/login"}>
+                    <ButtonV style={{ color: 'inherit' }}>
+                        Login
+                    </ButtonV>
+                </NavLink>
+            </Grid>
+
+        </Grid >
     );
 }
 

@@ -60,7 +60,6 @@ function Chats(props) {
 
     function deleteChat(id) {
         setMount(false);
-        console.log('удалить чат');
         setTimeout(() => setMount(true), 1000);
     }
 
