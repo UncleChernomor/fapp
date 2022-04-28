@@ -3,7 +3,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import ButtonV from '../button/ButtonV';
 
-function NavbarPrivate(props) {
+function NavbarPrivate({ logout, ...props }) {
     return (
         <Grid
             container
@@ -33,7 +33,7 @@ function NavbarPrivate(props) {
             </Grid>
             <Grid item>
                 <NavLink style={{ margin: '10px', fontSize: '20px' }} to={"/login"}>
-                    <ButtonV style={{ color: 'inherit' }}>
+                    <ButtonV style={{ color: 'inherit' }} onClick={logout} >
                         выйти
                     </ButtonV>
                 </NavLink>

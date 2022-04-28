@@ -17,10 +17,13 @@ const firebaseApp = initializeApp({
 });
 
 const auth = getAuth(firebaseApp);
+let userApp = null;
+
 onAuthStateChanged(auth, user => {
   if (user) {
     console.log('user true');
     console.log(user);
+    userApp = user;
   } else {
     console.log('user false');
     console.log(user);
@@ -32,7 +35,8 @@ export const UserContext = createContext(null);
 ReactDOM.render(
   <BrowserRouter>
     <UserContext.Provider value={{
-      auth
+      auth,
+      userApp
     }}>
       <App />
     </UserContext.Provider>
