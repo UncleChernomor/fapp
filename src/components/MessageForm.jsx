@@ -82,7 +82,6 @@ function MessageForm({ props }) {
                     onChange={e => setPost({ ...post, author: e.target.value })}
                 />
             }
-
             <InputV
                 type='text'
                 value={post.header}

@@ -1,0 +1,37 @@
+.Api {
+    width: 400px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.Name {
+    width: 40%;
+    border: 1px solid #777;
+}
+
+.Rate {
+    border: 1px solid #777;
+    flex-grow: 1;
+    text-align: right;
+}
+
+.Anime {
+    border: 1px solid black;
+    animation-duration: 5s;
+    animation-name: slidein;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    z-index: 10;
+}
+
+@keyframes slidein {
+    0% {
+        background-color: #fff;
+        width: 10%
+    }
+
+    100% {
+        background-color: #747272;
+        width: 100%;
+    }
+}

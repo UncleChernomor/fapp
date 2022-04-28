@@ -1,11 +1,18 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 .App {
-    margin: auto;
     width: calc(100% * 0.8);
-    color:black;
+    color: black;
     background-color: rgb(253, 253, 246);
     border: 1px solid rgb(0, 0, 150);
     box-shadow: 12px 12px 2px 1px rgba(189, 189, 255, 0.2);
+}
 
-    padding: 10px;
-    margin-top: 10px;
+main {
+    margin: 50px;
+    text-align: center;
 }
