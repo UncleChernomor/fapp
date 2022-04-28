@@ -6,17 +6,19 @@ import ButtonV from '../components/UI/button/ButtonV';
 import './LoginStyle.css';
 
 function Login(props) {
-    const [name, setName] = useState(null);
-    const [email, setEmail] = useState(null);
-    const [password, setPassword] = useState(null);
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
     const { auth } = useContext(UserContext);
 
     const onHandleEnter = async () => {
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
-                // Signed in 
+                if (userCredential.user.displayName === null) {
+                    const userT = userCredential.user.email.split('@');
+                    userCredential.user.displayName = userT[0];
+                }
                 console.log(userCredential.user);
-                // ...
             })
             .catch((error) => {
                 const errorCode = error.code;
@@ -29,7 +31,7 @@ function Login(props) {
         // const auth = getAuth();
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
-                if (!name) {
+                if (name.length < 1) {
                     const userT = userCredential.user.email.split('@');
                     userCredential.user.displayName = userT[0];
                 } else {
