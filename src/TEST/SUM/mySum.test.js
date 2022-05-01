@@ -1,6 +1,6 @@
 const mySum = require('./mySum');
 
-describe('mySum', () => {
+describe('TEST func mySum', () => {
     test('two positive', () => {
         expect(mySum(2, 2)).toBe(4);
     });
