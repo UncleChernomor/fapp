@@ -7,9 +7,11 @@ import PrivateRoutes from "./components/PrivateRoutes.jsx";
 import PublicRoutes from "./components/PublicRoutes.jsx";
 import './AppStyle.css'
 import { UserContext } from './index';
+import { useAuthState } from "react-firebase-hooks/auth";
 
 function App(props) {
-  const { user } = useContext(UserContext);
+  const { auth } = useContext(UserContext);
+  const [user] = useAuthState(auth);
 
   return (
     <>
